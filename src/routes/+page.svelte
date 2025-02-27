@@ -64,7 +64,7 @@
 		<div class="">
 			<h1 class="text-3xl font-semibold">Dev bookmarks</h1>
 			<p>A list of useful websites for developers</p>
-			<a class="text-xs underline" href="https://github.com/rifkiahmadfahrezi" target="_blank"
+			<a class="text-xs underline" href="https://github.com/rifkiahmadfahrezi/dev-bookmarks/" target="_blank"
 				>contribute</a
 			>
 		</div>
