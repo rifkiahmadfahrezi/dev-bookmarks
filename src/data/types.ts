@@ -17,7 +17,6 @@ export const categories = [
 	'frontend',
 	'backend',
 	'UI',
-	'UI',
 	'figma',
 	'tools',
 	'shadcn',
