@@ -55,6 +55,11 @@
 		category.push(c);
 		console.log(category);
 	};
+
+
+	const showFilterModal = () => {
+		(document.getElementById('filter-modal')as HTMLDialogElement)?.showModal()
+	}
 </script>
 
 <svelte:head>
@@ -67,7 +72,7 @@
 </svelte:head>
 
 <main class="mx-auto my-10 max-w-screen-lg px-3">
-	<div class="sticky top-0 z-50 my-6 bg-gray-100 px-2 pt-2 pb-4">
+	<div class="sticky top-0 z-50 my-6 bg-base-100 px-2 pt-2 pb-4">
 		<div class="flex scroll-m-4 flex-wrap items-center justify-between">
 			<div class="">
 				<h1 class="text-3xl font-semibold">Dev bookmarks</h1>
@@ -79,12 +84,12 @@
 				>
 			</div>
 			<div
-				class="mt-3 flex grow items-center justify-between rounded-md border border-gray-300 bg-white pr-3 md:mt-0 md:grow-0"
+				class="join pr-3 md:mt-0 md:grow-0"
 			>
 				<input
 					bind:value={keyword}
 					onchange={handleSearch}
-					class="w-full max-w-sm px-4 py-2"
+					class="join-item w-full max-w-sm input"
 					type="search"
 					placeholder="Search..."
 				/>
@@ -92,7 +97,7 @@
 					title="select language"
 					aria-label="select language"
 					bind:value={language}
-					class="px-4 py-2"
+					class="join-item select"
 					name="select-language"
 					id="select-language"
 				>
@@ -104,17 +109,13 @@
 				</select>
 			</div>
 		</div>
-		<details class="my-4 w-full">
-			<summary class="hidden w-fit rounded-full bg-blue-500 px-2 py-1 text-blue-50 md:block">
-				<span id="filter-toggle" role="term" aria-details="toggle-category-filter" class="hidden"
-					>Filter by category</span
-				>
-			</summary>
-		</details>
-		<div role="definition" id="toggle-category-filter" class="content">
+		<button class="btn" onclick={showFilterModal}>Categories</button>
+		<dialog id="filter-modal" class="modal">
+		<div class="modal-box w-11/12 max-w-5xl">
+			<h1>Filter by category</h1>
 			<div class="my-2 flex flex-wrap gap-1">
 				{#each categories as c}
-					<label class="rounded-full bg-gray-300 px-2 py-1" for={c}>
+					<label class="badge badge-primary" for={c}>
 						<input
 							checked={category.includes(c)}
 							onclick={() => filterCategory(c)}
@@ -126,15 +127,23 @@
 					</label>
 				{/each}
 			</div>
+			<div class="modal-action">
+				<form method="dialog">
+				<!-- if there is a button, it will close the modal -->
+				<button class="btn">Close</button>
+				</form>
+				
+			</div>
 		</div>
+		</dialog>
 		{#if category.length != 0}
-			<div class="flex flex-wrap items-center gap-1">
+			<div class="flex flex-wrap items-center gap-1 mt-2">
 				<span>Categories</span>
 				{#each category as c}
-					<span class="rounded-full bg-blue-200 px-2 py-1 text-blue-950">{c}</span>
+					<span class="badge badge-primary">{c}</span>
 				{/each}
 			</div>
-			<button class="rounded-md bg-red-500 px-2 py-1 text-white" onclick={() => (category = [])}
+			<button class="btn btn-error" onclick={() => (category = [])}
 				>clear</button
 			>
 		{/if}
@@ -147,12 +156,12 @@
 				<a
 					title={resource.label}
 					target="_blank"
-					class="group relative flex-grow rounded-lg border border-gray-300 bg-white p-3 pt-5 transition duration-300 ease-in-out [transition-timing-function:cubic-bezier(0.45,0,0.55,1)] md:hover:-translate-y-1 md:hover:shadow-xl md:focus:-translate-y-1 md:focus:shadow-xl"
+					class="group relative card flex-grow border border-primary/50 p-3 pt-6"
 					href={resource.url}
 				>
 					<div>
 						<svg
-							class="absolute top-2 right-2 size-5 text-slate-500 transition duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-slate-950"
+							class="absolute top-2 right-2 size-5 text-primary/50 transition duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-primary"
 							xmlns="http://www.w3.org/2000/svg"
 							viewBox="0 0 24 24"
 							fill="currentColor"
@@ -161,22 +170,22 @@
 							></path></svg
 						>
 						<div class="mb-5">
-							<h1 class="line-clamp-2 text-lg font-semibold capitalize">{resource.label}</h1>
+							<h1 class="line-clamp-2 card-title">{resource.label}</h1>
 							<span class="line-clamp-1 underline">{resource.url.split('/')[2]}</span>
 						</div>
 						<div class="flex flex-wrap gap-1">
 							{#each resource.categories as c}
 								<span
-									class="mt-1 w-fit rounded-full bg-blue-100 px-2 py-1 text-xs text-blue-950 capitalize"
+									class="badge badge-primary capitalize"
 									>{c}</span
 								>
 							{/each}
 						</div>
 						{#if resource.languages}
-							<div class="flex flex-wrap gap-1">
+							<div class="flex flex-wrap gap-1 mt-1">
 								{#each resource.languages as l}
 									<span
-										class="mt-1 w-fit rounded-full bg-pink-100 px-2 py-1 text-xs text-pink-950 capitalize"
+										class="badge badge-secondary capitalize"
 										>{l}</span
 									>
 								{/each}
@@ -188,59 +197,3 @@
 		</div>
 	{/if}
 </main>
-
-<style>
-	details {
-		overflow: hidden; /* Keep this line to prevent an odd blue outline around the element in Safari. */
-	}
-
-	summary {
-		display: block;
-	}
-
-	summary::-webkit-details-marker {
-		display: none;
-	}
-
-	#filter-toggle {
-		position: relative;
-		display: flex;
-		align-items: center;
-	}
-
-	#filter-toggle:hover {
-		cursor: pointer;
-	}
-
-	#filter-toggle::before {
-		content: '+';
-		font-size: 1rem;
-		display: flex;
-		align-items: center;
-		margin-right: 0.5rem;
-		transition: rotate 200ms 400ms ease-out;
-	}
-
-	div.content {
-		box-sizing: border-box;
-		max-height: 0;
-		overflow: hidden;
-		padding: 0 10px;
-		border: 2px solid transparent;
-		transition:
-			max-height 400ms ease-out,
-			border 0ms 400ms linear;
-	}
-
-	details[open] + div.content {
-		max-height: 100vh;
-		transition:
-			max-height 400ms ease-out,
-			border 0ms linear;
-	}
-
-	details[open] #filter-toggle::before {
-		rotate: 90deg;
-		transition: rotate 200ms ease-out;
-	}
-</style>
