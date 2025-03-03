@@ -4,7 +4,7 @@ export const resources: Resource[] = [
 	{
 		label: 'Rich text editor for shadcn',
 		url: 'https://platejs.org/',
-		categories: ['shadcn', 'react', 'nextjs'],
+		categories: ['shadcn', 'react', 'nextjs']
 	},
 	{
 		label: 'Japanese Learning App',

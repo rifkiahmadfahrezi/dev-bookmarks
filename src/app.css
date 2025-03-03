@@ -1,7 +1,9 @@
-@import "tailwindcss";
-@plugin "daisyui"{
-	themes: emerald --default, business --prefersdark;
- }
+@import 'tailwindcss';
+@plugin "daisyui" {
+	themes:
+		emerald --default,
+		business --prefersdark;
+}
 
 @theme {
 	--font-satoshi: 'Satoshi', sans-serif;

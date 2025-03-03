@@ -56,10 +56,9 @@
 		console.log(category);
 	};
 
-
 	const showFilterModal = () => {
-		(document.getElementById('filter-modal')as HTMLDialogElement)?.showModal()
-	}
+		(document.getElementById('filter-modal') as HTMLDialogElement)?.showModal();
+	};
 </script>
 
 <svelte:head>
@@ -72,7 +71,7 @@
 </svelte:head>
 
 <main class="mx-auto my-10 max-w-screen-lg px-3">
-	<div class="sticky top-0 z-50 my-6 bg-base-100 px-2 pt-2 pb-4">
+	<div class="bg-base-100 sticky top-0 z-50 my-6 px-2 pt-2 pb-4">
 		<div class="flex scroll-m-4 flex-wrap items-center justify-between">
 			<div class="">
 				<h1 class="text-3xl font-semibold">Dev bookmarks</h1>
@@ -83,13 +82,11 @@
 					target="_blank">contribute</a
 				>
 			</div>
-			<div
-				class="join pr-3 md:mt-0 md:grow-0"
-			>
+			<div class="join pr-3 md:mt-0 md:grow-0">
 				<input
 					bind:value={keyword}
 					onchange={handleSearch}
-					class="join-item w-full max-w-sm input"
+					class="join-item input w-full max-w-sm"
 					type="search"
 					placeholder="Search..."
 				/>
@@ -111,41 +108,38 @@
 		</div>
 		<button class="btn" onclick={showFilterModal}>Categories</button>
 		<dialog id="filter-modal" class="modal">
-		<div class="modal-box w-11/12 max-w-5xl">
-			<h1>Filter by category</h1>
-			<div class="my-2 flex flex-wrap gap-1">
-				{#each categories as c}
-					<label class="badge badge-primary" for={c}>
-						<input
-							checked={category.includes(c)}
-							onclick={() => filterCategory(c)}
-							type="checkbox"
-							name={c}
-							id={c}
-						/>
-						{c}
-					</label>
-				{/each}
+			<div class="modal-box w-11/12 max-w-5xl">
+				<h1>Filter by category</h1>
+				<div class="my-2 flex flex-wrap gap-1">
+					{#each categories as c}
+						<label class="badge badge-primary" for={c}>
+							<input
+								checked={category.includes(c)}
+								onclick={() => filterCategory(c)}
+								type="checkbox"
+								name={c}
+								id={c}
+							/>
+							{c}
+						</label>
+					{/each}
+				</div>
+				<div class="modal-action">
+					<form method="dialog">
+						<!-- if there is a button, it will close the modal -->
+						<button class="btn">Close</button>
+					</form>
+				</div>
 			</div>
-			<div class="modal-action">
-				<form method="dialog">
-				<!-- if there is a button, it will close the modal -->
-				<button class="btn">Close</button>
-				</form>
-				
-			</div>
-		</div>
 		</dialog>
 		{#if category.length != 0}
-			<div class="flex flex-wrap items-center gap-1 mt-2">
+			<div class="mt-2 flex flex-wrap items-center gap-1">
 				<span>Categories</span>
 				{#each category as c}
 					<span class="badge badge-primary">{c}</span>
 				{/each}
 			</div>
-			<button class="btn btn-error" onclick={() => (category = [])}
-				>clear</button
-			>
+			<button class="btn btn-error" onclick={() => (category = [])}>clear</button>
 		{/if}
 	</div>
 	{#if filteredResource.length === 0}
@@ -156,12 +150,12 @@
 				<a
 					title={resource.label}
 					target="_blank"
-					class="group relative card flex-grow border border-primary/50 p-3 pt-6"
+					class="group card border-primary/50 relative flex-grow border p-3 pt-6"
 					href={resource.url}
 				>
 					<div>
 						<svg
-							class="absolute top-2 right-2 size-5 text-primary/50 transition duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-primary"
+							class="text-primary/50 group-hover:text-primary absolute top-2 right-2 size-5 transition duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
 							xmlns="http://www.w3.org/2000/svg"
 							viewBox="0 0 24 24"
 							fill="currentColor"
@@ -170,24 +164,18 @@
 							></path></svg
 						>
 						<div class="mb-5">
-							<h1 class="line-clamp-2 card-title">{resource.label}</h1>
+							<h1 class="card-title line-clamp-2">{resource.label}</h1>
 							<span class="line-clamp-1 underline">{resource.url.split('/')[2]}</span>
 						</div>
 						<div class="flex flex-wrap gap-1">
 							{#each resource.categories as c}
-								<span
-									class="badge badge-primary capitalize"
-									>{c}</span
-								>
+								<span class="badge badge-primary capitalize">{c}</span>
 							{/each}
 						</div>
 						{#if resource.languages}
-							<div class="flex flex-wrap gap-1 mt-1">
+							<div class="mt-1 flex flex-wrap gap-1">
 								{#each resource.languages as l}
-									<span
-										class="badge badge-secondary capitalize"
-										>{l}</span
-									>
+									<span class="badge badge-secondary capitalize">{l}</span>
 								{/each}
 							</div>
 						{/if}
