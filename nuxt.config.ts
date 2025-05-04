@@ -13,10 +13,11 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/content',
     '@nuxt/eslint',
-    '@nuxt/fonts',
+    // '@nuxt/fonts',
+    // '@nuxt/scripts',
     '@nuxt/image',
     '@nuxt/ui',
-    '@nuxt/scripts'
+    '@nuxtjs/google-fonts',
   ],
   app: {
     head: {
@@ -24,6 +25,11 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: "en"
       }
+    }
+  },
+  googleFonts: {
+    families: {
+      'Poppins': ["400", "500", "800"]
     }
   }
 })
