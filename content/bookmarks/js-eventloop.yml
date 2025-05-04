@@ -1,0 +1,6 @@
+name: JS Event loop visualizer
+description: "javascript event loop explorer"
+url: "https://vault-developer.github.io/event-loop-explorer/"
+categories:
+  - tools
+  - javascript
