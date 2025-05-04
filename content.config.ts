@@ -4,7 +4,7 @@ export default defineContentConfig({
   collections: {
     bookmarks: defineCollection({
       type: "data",
-      source: "bookmarks/**.yml",
+      source: "bookmarks/**.json",
       schema: z.object({
         title: z.string(),
         name: z.string(),
@@ -13,6 +13,6 @@ export default defineContentConfig({
         categories: z.array(z.string())
       })
     })
-  }
+  },
 })
 

@@ -1,7 +1,0 @@
-name: PLatejs
-description: "Rich text editor for shadcn"
-url: "https://platejs.org/"
-categories:
-  - shadcn
-  - react
-  - nextjs
