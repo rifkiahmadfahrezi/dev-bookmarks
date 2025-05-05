@@ -1,10 +1,12 @@
 <template>
   <UApp>
-    <TopHeader/>
-    <main class="max-w-screen-lg px-3 mx-auto mb-20">
-      <Hero />
-      <BookmarkList />
-    </main>
+    <div class="bg-default" data-vaul-drawer-wrapper>
+      <TopHeader/>
+      <main class="max-w-screen-lg px-3 mx-auto mb-20">
+        <Hero />
+        <BookmarkList />
+      </main>
+    </div>
   </UApp>
 </template>
 
