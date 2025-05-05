@@ -17,7 +17,7 @@ const copied = ref(false)
 
 const handleClick = async () => {
   try {
-    await navigator.clipboard.writeText(text + '?ref=dev-bookmarks')
+    await navigator.clipboard.writeText(text)
     copied.value = true
   } catch (err) {
     console.error('Failed to copy:', err)
