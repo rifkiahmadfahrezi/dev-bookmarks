@@ -1,75 +1,35 @@
-# Nuxt Minimal Starter
+# Dev bookmarks
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+A curated list of useful websites for developers.
 
-## Setup
+## 🙌 Contribute
 
-Make sure to install dependencies:
+### 🟢 Option 1: Submit via Form
 
-```bash
-# npm
-npm install
+- Click the `Submit` button on the top-right of the site on [this page](https://dev-bookmarks.rifkiaf.my.id/).
+- Fill out the form with your website data.
+- After submitting, you'll be redirected to GitHub with a new file pre-filled.
+- Just click **"Propose new file"** and submit a **Pull Request**.
 
-# pnpm
-pnpm install
+### ✍️ Option 2: Add Manually via GitHub
 
-# yarn
-yarn install
+1. Fork this repository
+2. In your fork, navigate to the `content/bookmarks` folder
+3. Create a new file:
+   - File **must be in `.json` format**
+   - Filename should only use **letters, numbers, and dashes** (e.g. `my-awesome-site.json`)
+4. Copy and fill in the following template:
 
-# bun
-bun install
-```
+    ```json
+    {
+    "name": "Website title",
+    "description": "Website description",
+    "url": "https://website-url",
+    "categories": [
+        "category1",
+        "category2"
+    ]
+    }
+    ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+5. Commit the file and submit a Pull Request to the `master` branch.
