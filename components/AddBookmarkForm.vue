@@ -8,7 +8,7 @@ const schema = z.object({
   name: z.string().min(1, { message: "Field name is required"}),
   url: z.string().url({ message: "Url  not valid" }).min(1, { message: "Field Url is required"}),
   description: z.string().min(10, { message: "Field description must be atleast 10 characters"}),
-  category: z.array(z.string()).min(1, { message: "Must have at least 1 category" })
+  categories: z.array(z.string()).min(1, { message: "Must have at least 1 category" })
 })
 
 type Schema = z.output<typeof schema>
@@ -17,11 +17,11 @@ const state = reactive<Partial<Schema>>({
   name: '',
   url: '',
   description: '',
-  category: ['']
+  categories: ['']
 })
 
 async function onSubmit(event: FormSubmitEvent<Schema>) {
-  const { name, url, description, category } = event.data
+  const { name, url, description, categories } = event.data
 
   const config = {
     username: "rifkiahmadfahrezi",
@@ -31,7 +31,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
     fileName: `${name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')}.json`
   }
 
-  const filteredCategory = category.filter(c => !!c)
+  const filteredCategory = categories.filter(c => !!c)
   const encoded = encodeURIComponent(JSON.stringify({ name, url, description, category: filteredCategory  }, null, 2))
   const githubURL = `https://github.com/${config.username}/${config.repo}/new/${config.branch}/${config.path}?filename=${config.fileName}&value=${encoded}`
 
@@ -79,17 +79,17 @@ const uniqueCategories = computed(() => {
         v-model="state.description"/>
     </UFormField>
     
-    <UFormField class="col-span-2" label="Category" name="category">
+    <UFormField class="col-span-2" label="Categories" name="categories">
       <USelectMenu 
         v-if="!newCategory" 
-        v-model="state.category" 
+        v-model="state.categories" 
         multiple 
         :items="uniqueCategories" 
         class="w-full" />
       
       <!-- Input for adding new categories -->
       <div v-if="newCategory" class="flex gap-1 mb-2">
-        <UBadge variant="subtle" color="info" v-for="cat of state.category">
+        <UBadge variant="subtle" color="info" v-for="cat of state.categories">
           {{ cat }}
         </UBadge>
       </div>
@@ -101,7 +101,7 @@ const uniqueCategories = computed(() => {
         type="text"
         v-model="categoryInput"
         @change="() => {
-          state.category = categoryInput.trim().split(',')
+          state.categories = categoryInput.trim().split(',')
         }" />
         <span v-if="newCategory" class="text-xs">Separate category with comma (,)</span>
       </UFormField>
@@ -115,7 +115,7 @@ const uniqueCategories = computed(() => {
   </UForm>
 
   <label class="flex items-center gap-1 mt-3">
-    <USwitch @change="state.category = []" v-model="newCategory" />
+    <USwitch @change="state.categories = []" v-model="newCategory" />
     Add new category
   </label>
 
