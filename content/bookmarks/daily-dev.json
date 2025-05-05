@@ -2,7 +2,7 @@
   "name": "Daily.dev",
   "url": "https://daily.dev/",
   "description": "Personalized news feed and communities for developer",
-  "category": [
+  "categories": [
     "resource"
   ]
 }
