@@ -9,7 +9,7 @@ A curated list of useful websites for developers.
 - Click the `Submit` button on the top-right of the site on [this page](https://dev-bookmarks.rifkiaf.my.id/).
 - Fill out the form with your website data.
 - After submitting, you'll be redirected to GitHub with a new file pre-filled.
-- Just click **"Propose new file"** and submit a **Pull Request**.
+- Just click **"Fork this repository"** and submit a **Pull Request**.
 
 ### ✍️ Option 2: Add Manually via GitHub
 
