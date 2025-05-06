@@ -32,7 +32,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
   }
 
   const filteredCategory = categories.filter(c => !!c)
-  const encoded = encodeURIComponent(JSON.stringify({ name, url, description, category: filteredCategory  }, null, 2))
+  const encoded = encodeURIComponent(JSON.stringify({ name, url, description, categories: filteredCategory  }, null, 2))
   const githubURL = `https://github.com/${config.username}/${config.repo}/new/${config.branch}/${config.path}?filename=${config.fileName}&value=${encoded}`
 
   window.open(githubURL, "_blank")
